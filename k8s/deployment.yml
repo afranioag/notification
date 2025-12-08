@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: notification
-          image: notification-service:v1.0.2
+          image: notification-service:v1.0.3
           imagePullPolicy: Never
           ports:
             - containerPort: 8083
@@ -61,4 +61,4 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: consumer-config
+            name: notification-config
