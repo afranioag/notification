@@ -22,14 +22,30 @@ spec:
     spec:
       containers:
         - name: notification
-          image: notification-service:v1.0.4
+          image: notification-service:v1.0.5
           imagePullPolicy: Never
           ports:
             - containerPort: 8083
               name: http
+          # --- AQUI É ONDE AS VARIÁVEIS "ESTÃO" ---
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
+            # 1. O Host (definido direto aqui)
+            - name: MONGO_HOST
+              value: "mongodb-service.production"
+                # 2. O Usuário (pega da Secret 'mongo-secret')
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret              # Nome do arquivo Secret
+                  key: MONGO_INITDB_ROOT_USERNAME # Chave dentro do Secret
+            # 3. A Senha (pega da Secret 'mongo-secret')
+            - name: MONGO_PASSWORD
+              valueFrom:
+               secretKeyRef:
+                 name: mongo-secret              # Nome do arquivo Secret
+                 key: MONGO_INITDB_ROOT_PASSWORD # Chave dentro do Secret
           resources:
             requests:
               memory: "256Mi" # Reduzi um pouco já que é app simples

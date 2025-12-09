@@ -21,3 +21,14 @@ management:
 spring:
   application:
     name: notification-service
+  data:
+    mongodb:
+      # Nome do Service + Namespace (DNS interno do K8s)
+      host: ${MONGO_HOST:mongodb-service.production}
+      port: 27017
+      database: kubernetes
+      authentication-database: admin
+      auto-index-creation: true
+      # Injeta via variáveis de ambiente (Segurança)
+      username: ${MONGO_USERNAME:root}
+      password: ${MONGO_PASSWORD}

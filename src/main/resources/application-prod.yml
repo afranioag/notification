@@ -1,2 +1,15 @@
 server:
   port: 8083
+
+spring:
+  application:
+    name: notification-service
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: kubernetes
+      username: root
+      password: "k8s@aag653"
+      authentication-database: admin
+      auto-index-creation: true
