@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: notification
-          image: notification-service:v1.0.5
+          image: notification-service:v1.0.6
           imagePullPolicy: Never
           ports:
             - containerPort: 8083
